@@ -1,0 +1,426 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #1a1a1a;
+}
+.p-absolut{
+    position: absolute!important;
+}
+.p-relative{
+    position: relative!important;
+}
+img{
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
+}
+/*header -section start-------------------------------------------------------------*/
+
+header{
+    width: 100%;
+    height: 100px;
+}
+
+.header-container{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container a{
+    width: calc(100%/3);
+    font-size: 18px;
+    text-decoration: none;
+    color: #8ac90c;
+   margin: 0 10px;
+}
+
+.header-container .logo{
+    width: calc(100%/3);
+    margin-left: 30px;
+    color: #8ac90c;
+    text-decoration: underline;
+}
+
+.header-container .sign{
+    width: calc(100%/3);
+    margin-right: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.header-container .sign button{
+    margin-left: 20px;
+    color: #8ac90c;
+    border: 0;
+    background:none ;
+}
+.header-container .sign .sign-box{
+    width: 30%;
+    display: flex;
+}
+.header-container .sign .sign-box i:last-child{
+padding-left: 3px;
+}
+.header-container .sign .sign-box i:first-child{
+    padding-right: 6px;
+    border-right: 1px solid #8ac90c ;
+}
+.header-container .sign input{
+    color: #111111;
+   padding: 5px;
+    outline: 0;
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.header-container .search{
+    margin-left: 20px;
+    width: 100%;
+    height: 100%;
+    justify-content: right;
+    display: flex;
+}
+
+.header-container .search .search-btn{
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    padding: 5px;
+    background-color: #8ac90c;
+    color: #eeeeee;
+}
+/*main-section start--------------------------------*/
+main{
+    width: 100%;
+    height: 100%;
+    /*height: 1280px;*/
+}
+.main-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-container .right{
+    width: 30%;
+    height: 100%;
+
+}
+.main-container .left{
+    width: 70%;
+    height: 100vh;
+}
+
+/*main-left-section-------------------------------*/
+
+.main-container .left .person-work{
+
+    padding:10px 0;
+    border-radius: 10px 10px 0 0 ;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+}
+.main-container .left .work-box{
+
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    max-width: 100%;
+    max-height:80vh;
+    overflow-y: auto;
+
+}
+.img-box{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+.main-container .left .work-box img{
+    width: 90%;
+    height:auto;
+    display: block;
+}
+.btn-left{
+    border:none;
+    background: none;
+    font-size: 3vw;
+    color: #cbcbcb;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 3vw;
+    height: 3vw;
+    left: 0;
+    top: 45%;
+    transition: all 0.3s ease-in-out;
+}
+.btn-right{
+    color: #cbcbcb;
+    border:none;
+    cursor: pointer;
+    background: none;
+    border-radius: 50px;
+    font-size: 3vw;
+    width: 3vw;
+    height: 3vw;
+    right: 2%;
+    top: 45%;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-right:hover{
+    text-shadow: 0 0 2px #fff;
+    color: #fff;
+}
+.btn-left:hover{
+    text-shadow: 0 0 2px #fff;
+    color: #fff;
+}
+
+
+.work-name{
+    width: 90%;
+    font-size: 1.4vw;
+    color: #9f9f9f;
+    padding: 15px 10px 0 10px;
+}
+
+/*main-right-section---------------------------*/
+
+.right-container{
+    background-color: #222222;
+    border-radius: 10px 10px 0 0;
+    width: 100vw;
+    max-width: 100%;
+    max-height:100vh;
+    overflow-y: auto;
+}
+.right-container .profile{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.right-container .profile .profile-box{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.right-container .profile img{
+    border: 2px solid #8ac90c;
+   margin:10px ;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
+.right-container .profile .profile-info{
+    color: #787b7f;
+    line-height: 25px;
+}
+.right-container .profile .profile-info h1{
+    color: #ffffff;
+    line-height: 25px;
+    width: 50%;
+}
+.right-container .profile-btn{
+    width: 80%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.right-container .profile-btn button{
+    margin:5px 10px ;
+    padding: 10px;
+    border-radius: 5px;
+    color: #8ac90c;
+    border: 1px solid #8ac90c;
+    box-shadow:0 0 5px #324905;
+    background: none;
+}
+/*.right-container .save-btn section-----------------------------------*/
+.right-container .save-btn button{
+    margin:20px 0 10px 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #eeeeee;
+    border: none;
+    background: #111111;
+    /*color: #8ac90c;*/
+    /*border: 1px solid #8ac90c;*/
+    /*box-shadow:0 0 5px #324905;*/
+    /*background: none;*/
+}
+
+/*.right-container-post-info-section--------------------------*/
+
+.right-container .post-info .description .explanation{
+    background-color: #111111;
+    border-radius: 10px;
+    padding: 20px;
+    margin:0 20px;
+    line-height: 23px;
+    color: #d9d9d9;
+}
+
+.right-container .post-info .description .time i{
+    font-size: 14px;
+    padding-right: 5px;
+}
+.right-container .post-info .description .time{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding:10px 25px;
+    color: #787b7f;
+}
+
+.right-container .post-info .popularity{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-top:1px dashed #8ac90c;
+    padding: 28px 0;
+    margin:0  28px ;
+    color: #a8a8a8;
+}
+
+.right-container .post-info .popularity i{
+    padding-right:50px ;
+}
+
+.right-container .post-info .social-media{
+    border-top:1px dashed #8ac90c;
+    font-size: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 28px 0;
+   margin:0  28px ;
+}
+
+.right-container .post-info .social-media i{
+    cursor: pointer;
+    margin-right: 40px;
+    color: #9f9f9f;
+}
+
+/*social media class types start------------------------------*/
+
+.fa-youtube{
+    transition:all 0.3s ease-in-out;
+}
+
+.fa-instagram{
+    transition:all 0.3s ease-in-out;
+}
+
+.fa-whatsapp{
+    transition:all 0.3s ease-in-out;
+}
+
+.fa-x-twitter{
+    transition:all 0.3s ease-in-out;
+}
+/*--------------------------------------*/
+.fa-youtube:hover{
+
+    color: #ff253a!important;
+}
+
+.fa-instagram:hover{
+    color: #d21495!important;
+}
+
+.fa-whatsapp:hover{
+    color: #2fc90c!important;
+}
+
+.fa-x-twitter:hover{
+   color: #fff!important;
+}
+
+/*social media class types end------------------------------*/
+
+/*.right-container .tags section--------------------------*/
+
+.right-container .tags{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    padding: 20px;
+
+}
+.right-container .tags .links{
+    display: flex;
+    flex-wrap: wrap;
+    direction: rtl;
+}
+
+.right-container .tags .links a{
+    padding-right: 5px;
+    line-height: 25px;
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+/*.right-container .more-by-user-section-----------------------------------*/
+
+.right-container .more-by-user{
+         gap: 20px;
+        display: flex;
+        justify-content:left;
+        width: 100vw;
+        max-width: 100%;
+        max-height:80vh;
+}
+.right-container .more-by-user .right-img-box{
+        margin: 20px;
+        background-color: #111111;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        max-width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+}
+.right-container .more-by-user  .right-img-box img{
+        border-radius: 0.5vw;
+        padding: 0.15vw;
+        width: calc(calc(100%/3));
+        height:auto;
+        display: block;
+}
+
+/*.right-container .report-btn section---------------------------------*/
+
+.right-container .report-btn{
+    border-radius: 5px;
+    margin: 20px;
+    padding: 10px;
+    color: #eeeeee;
+    background-color: #111111;
+    border: none;
+}
+/*main-section end-------------------------------------------------------------*/

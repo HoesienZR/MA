@@ -1,0 +1,13 @@
+{% if more_posts %}
+{% load thumbnail %}
+    <h1>More by {{ user.first_name }}</h1 >
+
+<div class="more-by-user-little">
+    <div class="right-img-box">
+        {% for image in image_obj%}
+            <img src="{% thumbnail image.first.image 100x0 quality=80  %}">
+        {% endfor %}
+    </div>
+
+</div>
+{% endif %}
