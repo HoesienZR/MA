@@ -1,13 +1,12 @@
 {% extends 'parents/base.html' %}
-{% block content %}
 {% load static %}
-<main>
+{% block content %}
    <div class="main-container">
        <div class="left ">
            <div class="person-work p-relative">
                <div class="work-box ">
                     <div class="img-box">
-                        {% for art in post.images.all %}
+                        {% for art in arts %}
                         <img src="{{ art.image.url }}" alt="">
                         <h4 class="work-name">
                         {{ art.description }}
@@ -17,24 +16,17 @@
                </div>
                <button class="btn-right p-absolut"><i class="fa fa-angle-right"></i></button>
                <button class="btn-left p-absolut"><i class="fa fa-angle-left"></i></button>
-
-
            </div>
-
        </div>
        <div class="right">
            <div class="right-container">
-
                <div class="profile">
-
                    <div class="profile-box">
-                       <img src="{{ post.auther.profile }}" alt="">
+                       <img src="{{ auther.profile. }}" alt="">
                        <div class="profile-info">
                            <h1>{{ auther.first_name }} {{ auther.last_name }}</h1>
                            <h4>{{ auther.job }}</h4>
                        </div>
-
-
                    </div>
                    <div class="profile-btn">
                        <button class="follow-btn"><i class="fa fa-user-plus"> </i> Follow</button>
@@ -47,34 +39,22 @@
                        </button>
                    </div>
                </div>
-
-               <div id="post-info" data-post-id = '{{ post.id }}'>
-                   <div class="description" >
-                       {% if post.description %}
+               <div class="post-info" data-item-id = "{{ post.id }}">
+                   <div class="description">
                        <div class="explanation">
+                           {% if post.description %}
                            <p>
-
-                               {{ post.description }}
-
+                             {{ post.description }}
                            </p>
+                           {% endif %}
                        </div>
-                       {% endif %}
                        <div class="time">
                            <i class="fa fa-clock-rotate-left"></i><p>1 days ago</p>
                        </div>
-
                        <div class="popularity">
-                           <button>
-                           <h4>
-                               <i class="fa fa-thumbs-up" id = 'like_count'>{{ post.likes.count }} </i>
-                           </h4>
-                            <h4>
-                                <i class="fa fa-eye">{{ post.views }}</i>1k
-                            </h4>
-                            </button>
-
+                           <h4><i class="fa fa-thumbs-up" id='like_count'>{{ post.likes.count }}</i></h4>
+                            <h4><i class="fa fa-eye">1k</i></h4>
                        </div>
-
                        <div class="social-media">
                            <i class="fa-brands fa-instagram"><a href="#"></a></i>
                            <i class="fa-brands fa-whatsapp"><a href="#"></a></i>
@@ -92,62 +72,44 @@
                        <a href="#">#ibs-paint-x</a>
                        <a href="#">#adobe-photoshop</a>
                    </div>
-
                </div>
                 <div class="more-by-user-title">
-                    <h4>more by Armin zarei</h4>
+                    <h4>more by {{ auther.first_name }} {{ auther.last_name }}</h4>
                 </div>
                <div class="more-by-user">
-
                    <div class="right-img-box">
-                       <img src="images/photo_5801136709969231210_y.jp" alt="">
-                       <img src="{% static 'images/photo_5801136709969231210_y.jpg' %}" alt="">
-                       <img src="{% static 'images/photo_5801136709969231210_y.jpg' %}" alt="">
-                       <img src="{% static 'images/photo_5801136709969231210_y.jpg' %}" alt="">
-                       <img src="{% static 'images/photo_5801136709969231210_y.jpg' %}" alt="">
-                       <img src="{% static 'images/photo_5801136709969231210_y.jpg' %}" alt="">
-                       <img src="images/photo_5801136709969231210_y.jpg" alt="">
-                       <img src="images/photo_5801136709969231210_y.jpg" alt="">
-                       <img src="images/photo_5801136709969231210_y.jpg" alt="">
-                       <img src="images/photo_5801136709969231210_y.jpg" alt="">
-                       <img src="images/photo_5801136709969231210_y.jpg" alt="">
-                       <img src="images/photo_5801136709969231210_y.jpg" alt="">
                        <img src="images/photo_5801136709969231210_y.jpg" alt="">
                    </div>
-
                </div>
                <button class="report-btn">
                    <i class="fa fa-flag"></i>
                     report
                </button>
            </div>
-
-
-
            </div>
-
-
    </div>
-</main>
 <script src="{% static 'js/commends-page.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-$(document).ready(function() {
-    console.log('print like button worked');
-    $('.like_count').on('click', function(){ // Assuming this is your like button
-        var post_id = $('#post-info').data('post-id'); // Correct selector for post-info
-        var button = $(this);
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    $(document).ready(function(){
+    $('#like_count').on('click', function(){
+        updateQuantity($(this).closest('.post-info').data('item-id'));});
+    function updateQuantity(itemId){
+
         $.ajax({
-            type: 'POST',
-            url: '{% url 'social:update_like' %}',
-            data: {'post_id': post_id,csrfmiddlewaretoken:'{{ csrf_token }}',
-            success: function(data) {
-                $('.like_count').text(data.likes_count); // Correct selector for like count
+            type : 'POST',
+            url : '{% url 'social:update_like'%}',
+            data :{'csrfmiddlewaretoken':'{{ csrf_token }}', 'item_id':itemId,},
+            success : function (data) {
+                if (data.success) {
+                    $('#like_count').text(data.post_likes);
+                }
+                else {
+                    alert('error for updating quantity');
+                }
             },
         });
-    })
+    }
 });
-
-
 </script>
 {% endblock %}
