@@ -13,7 +13,7 @@ def show_details(request):
     post = get_object_or_404(Post, id=1)
     auther = post.auther
     arts = post.images.all()
-    print(auther)
+    print('print profile executed')
     post.views += 1
     context = {
         'post': post,
@@ -39,6 +39,30 @@ def update_like(request):
             post_likes = post.likes.count()
             response_data = {
                 'post_likes': post_likes,
+                'success': True,
+            }
+        else:
+            response_data = {'error': 'invalid post', 'success': False}
+        return JsonResponse(response_data,)
+
+
+@require_POST
+@login_required
+def save_post(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        user = request.user
+        if post_id is not None:
+            post = get_object_or_404(Post, id=post_id)
+            if user in post.saved_by.all():
+                post.saved_by.remove(user)
+                saved = False
+            else:
+                post.saved_by.add(user)
+                saved = True
+            post_saved = post.saved_by.count()
+            response_data = {
+                'saved': saved,
                 'success': True,
             }
         else:

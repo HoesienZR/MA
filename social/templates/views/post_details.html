@@ -1,5 +1,6 @@
 {% extends 'parents/base.html' %}
 {% load static %}
+{% load thumbnail %}
 {% block content %}
    <div class="main-container">
        <div class="left ">
@@ -22,7 +23,7 @@
            <div class="right-container">
                <div class="profile">
                    <div class="profile-box">
-                       <img src="{{ auther.profile. }}" alt="">
+                       <img src="{{ auther.profile }}" alt="">
                        <div class="profile-info">
                            <h1>{{ auther.first_name }} {{ auther.last_name }}</h1>
                            <h4>{{ auther.job }}</h4>
@@ -32,10 +33,14 @@
                        <button class="follow-btn"><i class="fa fa-user-plus"> </i> Follow</button>
                        <button class="touch-btn"><i class="fa fa-handshake-simple"> </i> Get in touch</button>
                    </div>
-                   <div class="save-btn">
-                       <button>
+                   <div class="save-btn" >
+                       <button class="save-button" id = 'save_post'>
                            <i class="fa fa-bookmark"></i>
-                           save
+                           {% if auther in post.saved_by.all  %}
+                               save
+                           {% else %}
+                               unsave
+                           {% endif %}
                        </button>
                    </div>
                </div>
@@ -110,6 +115,28 @@
             },
         });
     }
+    $(".save-button").click(function (){
+        console.log('something happens')
+        var postInfoElement = document.querySelector('.post-info');
+        var postId = postInfoElement.getAttribute('data-item-id');
+        console.log(postId);
+            $.ajax({
+                type: "POST",
+                url: '{% url  'social:save_post' %}',
+                data:{'csrfmiddlewaretoken': '{{csrf_token}}','post_id':postId },
+                success :function (data) {
+                    if (data.saved){
+                        $('#save_post').text('Unsaved');
+                    }
+                    else {
+                        $('#save_post').text('saved');
+                    }
+                },
+                error :function (error) {
+                    console.log(' Ajaxخطا در ارسال درخواست'+error);
+                }
+            });
+        });
 });
 </script>
 {% endblock %}

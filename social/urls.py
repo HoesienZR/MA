@@ -8,7 +8,8 @@ app_name = 'social'
 urlpatterns = [
 
     path('post_details/', views.show_details, name='post_details'),
-    path('update_like/',views.update_like,name='update_like')
+    path('update_like/', views.update_like,name='update_like'),
+    path('save_post/', views.save_post, name='save_post'),
 
 
 
