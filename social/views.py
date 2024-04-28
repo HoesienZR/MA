@@ -11,22 +11,27 @@ from .models import Post
 
 def show_details(request):
     post = get_object_or_404(Post, id=1)
-    auther = post.auther
+    auther = request.user
+    print(auther.id)
+    print(request.user.id)
+    print ('check that auther is equal to request user ',auther == request.user)
     arts = post.images.all()
     print('print profile executed')
+    print(auther in post.saved_by.all())
     post.views += 1
     context = {
         'post': post,
         'auther': auther,
         'arts': arts,
+        'is_in_auther': auther in post.saved_by.all(),
     }
+    print(context['is_in_auther'])
     return render(request, 'views/post_details.html', context=context)
 
 
 @login_required
 @require_POST
 def update_like(request):
-    print('enterd this shit')
     if request.method == 'POST':
         post_id = request.POST.get('item_id')
         user = request.user
@@ -60,11 +65,13 @@ def save_post(request):
             else:
                 post.saved_by.add(user)
                 saved = True
-            post_saved = post.saved_by.count()
+
             response_data = {
                 'saved': saved,
                 'success': True,
+
             }
         else:
             response_data = {'error': 'invalid post', 'success': False}
-        return JsonResponse(response_data,)
+        print('this is in ajax',user in post.saved_by.all())
+        return JsonResponse(response_data)

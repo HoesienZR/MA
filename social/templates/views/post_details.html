@@ -36,10 +36,12 @@
                    <div class="save-btn" >
                        <button class="save-button" id = 'save_post'>
                            <i class="fa fa-bookmark"></i>
-                           {% if auther in post.saved_by.all  %}
-                               save
+                           {% if is_in_auther  %}
+                               <p> this for unsaved</p>
+                               unsaved
                            {% else %}
-                               unsave
+                               <p>this is saved</p>
+                               save
                            {% endif %}
                        </button>
                    </div>
@@ -126,7 +128,7 @@
                 data:{'csrfmiddlewaretoken': '{{csrf_token}}','post_id':postId },
                 success :function (data) {
                     if (data.saved){
-                        $('#save_post').text('Unsaved');
+                        $('#save_post').text('unsaved');
                     }
                     else {
                         $('#save_post').text('saved');
